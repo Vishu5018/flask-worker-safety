@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Members</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .team-card {
+            width: 250px;
+            height: 300px;
+            perspective: 1000px;
+            position: relative;
+            transition: transform 0.3s ease-in-out;
+            padding-bottom: 50px;
+        }
+        .team-card:hover {
+            transform: scale(1.15);
+        }
+        .team-card:hover::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            filter: blur(10px);
+            z-index: -1;
+        }
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        .team-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            border-radius: 10px;
+        }
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        .card-back {
+            background: #1a202c;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: rotateY(180deg);
+            gap: 10px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+        .social-icons a {
+            color: white;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            color: #ff9900;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-8">
+        <h1 class="text-4xl font-bold text-center mb-8">Team Members</h1>
+        <div class="flex justify-center gap-8">
+
+            <!-- Team Member 1 -->
+            <div class="team-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="/static/images/vishu.jpg" alt="Vishu Sharma">
+                    </div>
+                    <div class="card-back">
+                        <img class="profile-img" src="/static/images/vishu.jpg" alt="Profile Picture">
+                        <h2 class="text-xl font-bold">Vishu Sharma</h2>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/vishu-sharma-2b64a3234/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/zahreela_balak?igsh=MWJmaTV0NGdod2xnbA==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="team-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="/static/images/naman.jpg" alt="Member 1">
+
+                    </div>
+                    <div class="card-back">
+                        <img class="profile-img" src="/static/images/naman.jpg" alt="Profile Picture">
+                        <h2 class="text-xl font-bold">Naman Joshi</h2>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/naman-joshi-025a4822b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/naman_joshi_842?igsh=MWlvMm43MXMzOG1sMw==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="team-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="/static/images/sujoy.jpg" alt="Sujoy">
+
+                    </div>
+                    <div class="card-back">
+                        <img class="profile-img" src="/static/images/sujoy.jpg" alt="Profile Picture">
+                        <h2 class="text-xl font-bold">Sujoy Mahata</h2>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/sujoy-mahata-0702572a2/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/sujoy.iitkgp__?igsh=YmdoN2NlZGFibGg0" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Our Mission Section -->
+        <div class="h-screen w-full flex flex-col justify-center items-center text-center bg-gray-100 px-16">
+            <h2 class="text-3xl font-bold text-gray-900">Our Mission</h2>
+            <p class="text-2xl text-gray-700 max-w-5xl leading-relaxed">
+                In industrial environments, worker safety is a top priority. 
+                However, ensuring compliance with safety regulations and identifying
+                 potential hazards in real time remains a challenge. We are developing 
+                 an AI-powered system for monitoring unsafe behavior in factories, 
+                 integrating safety analysis, data analysis, and predictive modeling to enhance workplace security.
+            </p>
+            <h3 class="text-3xl font-bold text-gray-900">Safety Analysis </h3>
+            <p class="text-2xl text-gray-700 max-w-5xl leading-relaxed"> Our system continuously monitors worker behavior using computer vision
+             and deep learning models to detect unsafe activities such as improper PPE usage,
+              unsafe lifting techniques, proximity to hazardous machinery, and rule violations.
+               By providing real-time alerts, it enables immediate corrective actions, reducing the likelihood of accidents.</p>
+
+            <h4 class="text-3xl font-bold text-gray-900" >Data Analysis & Insights</h4>
+            <p class="text-2xl text-gray-700 max-w-5xl leading-relaxed"> collecting and analyzing workplace safety data, our AI-driven system helps
+             organizations identify trends and recurring safety violations. The system generates 
+             comprehensive reports that offer data-driven insights into risk factors, enabling proactive
+              safety interventions. These insights help improve training programs, optimize workflows,
+               and ensure regulatory compliance.</pBy>
+
+            <h5 class="text-3xl font-bold text-gray-900" >Reducing Workplace Hazards</h5>
+            <p class="text-2xl text-gray-700 max-w-5xl leading-relaxed"> safety audits and manual inspections are time-consuming and prone to human error.
+             Our automated system eliminates these limitations by providing real-time monitoring and instant alerts.
+              Early detection of risks prevents incidents before they occur, reducing workplace hazards and ensuring
+               a safer environment for employees. Additionally, the system’s integration with predictive analytics
+                helps forecast potential risks, allowing companies to take preventive measures in advance.</p>
+        </div>
+    </div>
+</body>
+</html>

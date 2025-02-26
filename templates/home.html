@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring of Unsafe Behavior</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js for Graph -->
+    <style>
+        /* Restricting Graph Size */
+        #violationChart {
+            width: 100% !important;
+            max-width: 350px;  /* Prevents graph from expanding too much */
+            height: 100% !important;
+            max-height: 200px; /* Ensures graph doesn't grow beyond container */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header Section -->
+    <header class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Monitoring of Unsafe Behavior</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a class="hover:underline" href="about">About</a></li>
+                    <li><a class="hover:underline" href="#services">Services</a></li>
+                    <li><a class="hover:underline" href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="container mx-auto p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Live Camera Feed -->
+<div class="bg-white p-4 rounded shadow">
+    <h2 class="text-xl font-bold mb-2">Live Detection</h2>
+    <div class="w-full h-64 rounded overflow-hidden">
+        <video id="liveVideo" class="w-full h-full object-cover" autoplay></video>
+    </div>
+</div>
+
+            <!-- Violation Details -->
+            <div class="bg-white p-4 rounded shadow">
+                <h2 class="text-xl font-bold mb-2">Safety Violations</h2>
+                <ul id="violationList" class="list-disc pl-5 text-red-600">
+                    <li>No violations detected.</li>
+                </ul>
+                <div class="mt-4">
+                    <h3 class="text-lg font-bold mb-2">Violation Statistics</h3>
+                    <div class="w-full h-48">  <!-- Fixed height for canvas -->
+                        <canvas id="violationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- About & Services Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <div class="bg-white p-4 rounded shadow">
+                <h2 class="text-xl font-bold mb-2">About Us</h2>
+                <p>At Safety Monitoring Solutions, we are dedicated to ensuring workplace safety through advanced
+                    AI-driven monitoring systems. Our mission is to provide real-time surveillance of factory workers,
+                    detecting unsafe behaviors and potential hazards before they lead to accidents.
+
+                    Using state-of-the-art computer vision and AI technology, our system continuously analyzes live video
+                     feeds to identify safety violations, such as improper equipment use, missing protective gear, and unsafe
+                     working conditions. By integrating real-time alerts and data analytics, we help industries maintain a
+                      safer working environment, reduce workplace injuries, and comply with safety regulations.
+                    Our commitment is to revolutionize workplace safety through innovation, helping businesses create
+                    a secure and accident-free work environment.
+                    .</p>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+                <h2 class="text-xl font-bold mb-2">Our Services</h2>
+                <ul class="list-disc pl-5">
+                    <li>Real-time Monitoring</li>
+                    <li>Data Analytics</li>
+                    <li>Incident Reporting</li>
+                    <li>Incident Documentation & Compliance</li>
+                    <li>Customizable Solutions</li>
+                    <li>Automated Safety Violation Alerts</li>
+
+                </ul>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="bg-white p-4 rounded shadow mt-6">
+            <h2 class="text-xl font-bold mb-2">Contact Us</h2>
+            <form class="space-y-2">
+                <div class="flex space-x-2">
+                    <input class="border p-2 flex-1" placeholder="Name" type="text"/>
+                    <input class="border p-2 flex-1" placeholder="Email" type="email"/>
+                </div>
+                <textarea class="border p-2 w-full h-24" placeholder="Message"></textarea>
+                <button class="bg-gray-800 text-white px-4 py-2 rounded" type="submit">Send</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white p-4 mt-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Safety Monitoring Solutions. All rights reserved.</p>
+
+        </div>
+        <footer class="bg-gray-800 text-white p-4 mt-8">
+   <div class="container mx-auto">
+    <h2 class="text-xl font-bold mb-2">
+     Solutions
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+     <ul class="list-disc pl-5 space-y-2">
+      <li>
+       Easy system integration
+      </li>
+      <li>
+       Unified data visibility
+      </li>
+      <li>
+       Seamless edge data capture
+      </li>
+      <li>
+       Built-in AI/ML pipelines
+      </li>
+     </ul>
+     <ul class="list-disc pl-5 space-y-2">
+      <li>
+       Reliable in low-connectivity
+      </li>
+      <li>
+       Over-the-air updates
+      </li>
+      <li>
+       Built-in security
+      </li>
+      <li>
+       Intelligent alerts
+      </li>
+     </ul>
+    </div>
+   </div>
+  </footer>
+    </footer>
+
+    <!-- JavaScript Section -->
+    <script>
+        // Live Camera Feed
+        const video = document.getElementById("liveVideo");
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.log("Error accessing webcam: ", error);
+                });
+        }
+
+        // Simulated Safety Violations Update (For Demo)
+        setInterval(() => {
+            const violations = [
+                "Safe walkway violation",
+                "Unauthorized intervention",
+                "Carrying overload with forklift",
+                "Opened Panel cover"
+            ];
+            const randomViolation = violations[Math.floor(Math.random() * violations.length)];
+            document.getElementById("violationList").innerHTML = `<li>${randomViolation}</li>`;
+        }, 5000);
+
+        // Chart.js - Safety Violation Statistics
+        const ctx = document.getElementById('violationChart').getContext('2d');
+        const violationChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Safe walkway violation",
+                "Unauthorized intervention",
+                "Carrying overload with forklift",
+                "Opened Panel cover"],
+                datasets: [{
+                    label: "Number of Violations",
+                    data: [5, 3, 7, 2, 4], // Sample Data
+                    backgroundColor: ["#ff5733", "#33ff57", "#3357ff", "#ff33a1", "#ffcc33"]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,  // Keeps the chart from expanding
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Function to Update the Chart Dynamically
+        function updateChart(newData) {
+            violationChart.data.datasets[0].data = newData;
+            violationChart.update();
+        }
+    </script>
+
+</body>
+</html>
